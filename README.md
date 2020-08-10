@@ -40,12 +40,11 @@ The API uses the following libraries and frameworks to deliver the functionalati
 
 2. Run code from your preferred IDE 
 
-```
-
 3. Navigate to http://127.0.0.1:5000/ to cosume endpoints
 
+```
 
-
+[click here ](https://github.com/SirGidy/aggregator-service/blob/master/FlaskMongoDB.postman_collection.json) for sample request json objects to be imported to Postman
 
 
 Happy testing !!!
