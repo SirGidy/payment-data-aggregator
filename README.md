@@ -26,10 +26,10 @@ The API uses the following libraries and frameworks to deliver the functionalati
 - [Pipenv](https://pipenv.readthedocs.io/en/latest/) For managing python virtual environments.
 - [mongoengine](http://docs.mongoengine.org/projects/flask-mongoengine/en/latest/) - For managing our database.
 - [flask-marshmallow](https://flask-marshmallow.readthedocs.io/en/latest/) - For serializing user requests.
-- [Postman](https://www.getpostman.com/downloads/) - For testing our APIs
+- [Postman](https://www.getpostman.com/downloads/) - For testing our APIs.
 - [Flask-Bcrypt](https://flask-bcrypt.readthedocs.io/en/latest/) For hashing user password.
 - [Flask-JWT-Extended](https://flask-jwt-extended.readthedocs.io/en/stable/) For creating tokens for authorization and authentication.
-- [Celery](https://docs.celeryproject.org/en/latest/getting-started/first-steps-with-celery.html) - to schedule long-running task
+- [Celery](https://docs.celeryproject.org/en/latest/getting-started/first-steps-with-celery.html) - to schedule long-running tasks.
   
 
 # How to Test
@@ -40,7 +40,7 @@ The API uses the following libraries and frameworks to deliver the functionalati
 
 2. Run code from your preferred IDE 
 
-3. Navigate to http://127.0.0.1:5000/ to cosume endpoints
+3. Navigate to http://127.0.0.1:5000/ to consume endpoints
 
 ```
 
