@@ -1,0 +1,4 @@
+{
+    "python.pythonPath": "/Users/sirgidy/.virtualenvs/flaskbackend/bin/python",
+    "python.formatting.provider": "black"
+}
