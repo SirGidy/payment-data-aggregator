@@ -21,3 +21,5 @@ def initialize_routes(api):
     api.add_resource(MerchantApi, "/api/merchant/signup")
     api.add_resource(MerchantTokenApi, "/api/merchant/token")
 
+    api.add_resource(ForgotPassword, "/api/auth/forgot")
+
