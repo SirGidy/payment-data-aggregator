@@ -36,11 +36,13 @@ The API uses the following libraries and frameworks to deliver the functionalati
 
 
 ```sh
-1. git clone https://github.com/SirGidy/aggregator-service.git
+1. git clone https://github.com/SirGidy/payment-data-aggregator.git
 
-2. Run code from your preferred IDE 
+2. run pip install -r requirements.txt
 
-3. Navigate to http://127.0.0.1:5000/ to consume endpoints
+3. Run code from your preferred IDE 
+
+4. Navigate to http://127.0.0.1:5000/ to consume endpoints
 
 ```
 

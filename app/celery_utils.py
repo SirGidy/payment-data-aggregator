@@ -1,9 +1,11 @@
 def init_celery(celery, app):
     backend = app.config["CELERY_RESULT_BACKEND"]
     broker = app.config["CELERY_BROKER_URL"]
+    beatschedule = app.config["CELERYBEAT_SCHEDULE"]
     # celery = Celery(app.import_name, backend=backend, broker=broker)
     celery.conf.broker_url = broker
     celery.conf.result_backend = backend
+    celery.conf.beat_schedule = beatschedule
     celery.conf.update(app.config)
     TaskBase = celery.Task
 
@@ -14,11 +16,3 @@ def init_celery(celery, app):
 
     celery.Task = ContextTask
     return celery
-
-
-# CELERYBEAT_SCHEDULE = {
-#         'run-every-1-minute': {
-#             'task': 'myflaskapp.print_hello',
-#             'schedule': timedelta(seconds=60)
-#         },
-# }

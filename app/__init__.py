@@ -8,8 +8,9 @@ from flask_restful import Api
 from app.resources.errors import errors
 from app.celery_utils import init_celery
 from sendgrid import SendGridAPIClient
+from celery.schedules import crontab
 
-
+# from celery.decorators import periodic_task
 # Globally accessible libraries
 celery = Celery(__name__)
 bcrypt = Bcrypt()
