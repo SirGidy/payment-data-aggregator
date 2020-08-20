@@ -2,6 +2,7 @@
 __pycache__/
 instance/
 
+
 # Environments
 .env
 .env.test

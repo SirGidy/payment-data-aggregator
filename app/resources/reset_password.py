@@ -11,7 +11,7 @@ from app.resources.errors import (
 )
 from jwt.exceptions import ExpiredSignatureError, DecodeError, InvalidTokenError
 
-# from app.services.mail_service import send_email
+from app.services.mail_service import send_email, sendflask_email
 
 
 class ForgotPassword(Resource):
@@ -23,21 +23,24 @@ class ForgotPassword(Resource):
             if not email:
                 raise SchemaValidationError
 
-            user = User.objects.get(email=email)
-            if not user:
-                raise EmailDoesnotExistsError
+            # user = User.objects.get(email=email)
+            # if not user:
+            #     raise EmailDoesnotExistsError
 
-            expires = datetime.timedelta(hours=24)
-            reset_token = create_access_token(str(user.id), expires_delta=expires)
+            # expires = datetime.timedelta(hours=24)
+            # reset_token = create_access_token(str(user.id), expires_delta=expires)
 
-            # send_email.delay('[Movie-bag] Reset Your Password',
-            #                   sender='support@movie-bag.com',
-            #                   recipients=[user.email],
-            #                   text_body=render_template('email/reset_password.txt',
-            #                                             url=url + reset_token),
-            #                   html_body=render_template('email/reset_password.html',
-            #                                             url=url + reset_token))
-            return {"Password reset url": url + reset_token}, 200
+            send_email.delay(
+                "Reset Your Password",
+                recipients=[email],
+                text_body=render_template(
+                    "email/reset_password.txt", url=url + "reset_token"
+                ),
+                html_body=render_template(
+                    "email/reset_password.html", url=url + "reset_token"
+                ),
+            )
+            return {"Password reset url": url + "reset_token"}, 200
         except SchemaValidationError:
             raise SchemaValidationError
         except EmailDoesnotExistsError:
@@ -64,14 +67,15 @@ class ResetPassword(Resource):
             user.modify(password=password)
             user.hash_password()
             user.save()
+            send_email.delay(
+                "Password reset successful",
+                sender="support@test-bag.com",
+                recipients=[user.email],
+                text_body="Password reset was successful",
+                html_body="<p>Password reset was successful</p>",
+            )
 
             return {"Password reset was successful for": user.email}, 200
-
-            # return send_email('[Movie-bag] Password reset successful',
-            #                   sender='support@movie-bag.com',
-            #                   recipients=[user.email],
-            #                   text_body='Password reset was successful',
-            #                   html_body='<p>Password reset was successful</p>')
 
         except SchemaValidationError:
             raise SchemaValidationError
@@ -81,4 +85,3 @@ class ResetPassword(Resource):
             raise BadTokenError
         except Exception as e:
             raise InternalServerError
-
